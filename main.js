@@ -74,20 +74,20 @@ let filtro = prompt ('ingresa:\n1) para remeras \n2) para buzos \n3) para pantal
 function saludo(){
     if (filtro == "1"){
         for (const item of remeras){
-            console.log(`${item.nombre}/${item.talle}/${item.id}/codigo:${item.codigo}/${item.precio}`)
+            alert(`${item.nombre}/${item.talle}/${item.id}/codigo:${item.codigo}/${item.precio}`)
         }
     }
     if (filtro == "2"){
         for (const item of buzos){
-            console.log(`${item.nombre}/${item.talle}/${item.id}/codigo:${item.codigo}/${item.precio}`)
+            alert(`${item.nombre}/${item.talle}/${item.id}/codigo:${item.codigo}/${item.precio}`)
         }
     }
     if (filtro == "3"){
         for (const item of pantalones){
-            console.log(`${item.nombre}/${item.talle}/${item.id}/codigo:${item.codigo}/${item.precio}`)
+            alert(`${item.nombre}/${item.talle}/${item.id}/codigo:${item.codigo}/${item.precio}`)
         }
     }
-    
+    comprar()
 }
 saludo()
 
@@ -95,45 +95,26 @@ let carrito = [];
 
 function comprar(){
     let buy = prompt ("Ingresa el codigo del producto que deseas comprar")
-    console.log(catalogo.find((producto)=> buy === producto.codigo))
-    carrito.push(buy)
-    console.log(carrito)
+    const producto = catalogo.find((producto)=> producto.codigo === buy)
+    carrito.push(producto)
+    alert(carrito)
+
+    comprarMas()
 }
 
 comprar()
 
 function comprarMas(){
-    let continuarCompra = prompt ("Desea continuar comprando?\n 1)Si\n 2)No\n 3)Deseas comprar otro tipo de prenda")
+    let continuarCompra = prompt("Desea continuar comprando?\n 1)Si\n 2)No\n 3)Deseas comprar otro tipo de prenda")
     if (continuarCompra == "1") {
-        let buy = prompt ("Ingresa el codigo del producto que deseas comprar")
-    console.log(catalogo.find((producto)=> buy === producto.codigo))
-    carrito.push(buy)
-    console.log(carrito)
-    comprarMas()
+        comprar();
     }
     
     if (continuarCompra == "2") {
         alert("Gracias por su compra")
     }
     if (continuarCompra == "3") {
-        let filtro = prompt ('ingresa:\n1) para remeras \n2) para buzos \n3) para pantalones')
-        if (filtro == "1"){
-            for (const item of remeras){
-                console.log(`${item.nombre}/${item.talle}/${item.id}/codigo:${item.codigo}/precio:$${item.precio}`)
-            }
-        }
-        if (filtro == "2"){
-            for (const item of buzos){
-                console.log(`${item.nombre}/${item.talle}/${item.id}/codigo:${item.codigo}/precio:$${item.precio}`)
-            }
-        }
-        if (filtro == "3"){
-            for (const item of pantalones){
-                console.log(`${item.nombre}/${item.talle}/${item.id}/codigo:${item.codigo}/precio:$${item.precio}`)
-            }
-        }
-        comprar()
-        comprarMas()
+        saludo()
     }
 }
 
